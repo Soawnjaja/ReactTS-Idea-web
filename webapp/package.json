@@ -1,5 +1,5 @@
 {
-  "name": "web_app",
+  "name": "@fullstackts/web_app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,10 @@
     "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
   },
   "dependencies": {
+    "@fullstackts/backend": "workspace:*",
+    "@tanstack/react-query": "^5.90.21",
+    "@trpc/client": "^11.10.0",
+    "@trpc/react-query": "^11.10.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "formik": "^2.4.4",
