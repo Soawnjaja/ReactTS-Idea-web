@@ -1,6 +1,6 @@
 import express, { Router } from 'express'
 import * as trpcExpress from '@trpc/server/adapters/express'
-import { trpcRoute } from './trpc'
+import { trpcRouter } from './trpc'
 
 const expressApp = express()
 
