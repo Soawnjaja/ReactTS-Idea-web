@@ -1,5 +1,5 @@
 {
-  "name": "@fullstackts/web_app",
+  "name": "@fullstackts/webapp",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "types": "tsc --noEmit -p ./tsconfig.app.json && tsc --noEmit -p ./tsconfig.node.json",
     "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.198",
     "@types/mixpanel-browser": "^2.47.3",
+    "@types/node": "^25.3.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-image-gallery": "^1.2.1",

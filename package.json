@@ -1,5 +1,9 @@
 {
     "name": "fullstackts",
     "private": true,
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "scripts": {
+        "b": "pnpm --filter @fullstackts/backend",
+        "w": "pnpm --filter @fullstackts/webapp"
+    }
 }

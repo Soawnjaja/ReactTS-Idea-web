@@ -135,6 +135,9 @@ importers:
       '@types/mixpanel-browser':
         specifier: ^2.47.3
         version: 2.66.0(@mixpanel/rrweb-utils@2.0.0-alpha.18.3)
+      '@types/node':
+        specifier: ^25.3.0
+        version: 25.3.0
       '@types/react':
         specifier: ^18.2.15
         version: 18.3.28
