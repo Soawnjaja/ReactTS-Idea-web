@@ -2,7 +2,7 @@ import { createTRPCReact, httpBatchLink } from '@trpc/react-query'
 import type { TrpcRouter } from '@fullstackts/backend/src/trpc'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-const trpc = createTRPCReact<TrpcRouter>()
+export const trpc = createTRPCReact<TrpcRouter>()
 //  клиент реакт квери управляет самой логикой запросов
 // (не нужно перезапрашивать запрос если возникла ошибка )
 // если ушли с окна, которая может перезапросить и пока не надо мне это
