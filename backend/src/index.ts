@@ -1,4 +1,4 @@
-import express, { Router } from 'express'
+import express from 'express'
 import cors from 'cors'
 import * as trpcExpress from '@trpc/server/adapters/express'
 import { trpcRouter } from './trpc'

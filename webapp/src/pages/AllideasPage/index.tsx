@@ -3,8 +3,12 @@ import { trpc } from '../../lib/trpc'
 export const AllIdeasPage = () => {
   const { data, isLoading, error } = trpc.getIdeas.useQuery()
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error {error.message}</div>
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (error) {
+    return <div>Error {error.message}</div>
+  }
 
   const ideas = data?.ideas ?? []
   return (
