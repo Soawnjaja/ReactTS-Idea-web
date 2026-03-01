@@ -8,7 +8,6 @@ const ideas = [
   { id: 'ideanick5', name: 'Idea5', description: 'Description idea5 ...' },
 ]
 const trpc = initTRPC.create()
-
 export const trpcRouter = trpc.router({
   getIdeas: trpc.procedure.query(() => {
     return { ideas }
