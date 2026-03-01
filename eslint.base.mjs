@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 
 export const baseConfig = [
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '**/commitlint.config.cjs']),
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
