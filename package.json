@@ -7,7 +7,8 @@
         "w": "pnpm --filter @fullstackts/webapp",
         "dev": "pnpm -r --parallel dev",
         "types": "pnpm -r --parallel types",
-        "prettify": "pnpm -r -parallel prettify"
+        "prettify": "pnpm -r -parallel prettify",
+        "prepare": "husky"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.3",
