@@ -9,7 +9,6 @@ const ideas = [
 ]
 const trpc = initTRPC.create()
 
-const x: number = 'hello'
 export const trpcRouter = trpc.router({
   getIdeas: trpc.procedure.query(() => {
     return { ideas }
