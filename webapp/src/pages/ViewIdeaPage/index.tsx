@@ -1,17 +1,26 @@
 import { useParams } from 'react-router-dom'
-
+import { trpc } from '../../lib/trpc'
 export const ViewIdeaPage = () => {
   const { id } = useParams() as { id: string }
+  const ideaQuery = trpc.getIdea.useQuery({
+    id,
+  })
+  if (ideaQuery.isLoading || ideaQuery.isFetching) {
+    return <span>Loading...</span>
+  }
+  if (ideaQuery.isError) {
+    return <span>Error: {ideaQuery.error.message}</span>
+  }
+  if (!ideaQuery.data) {
+    return <div>Not found</div>
+  }
+  const { idea } = ideaQuery.data
+
   return (
     <div>
-      <h1>{id}</h1>
-      <p>Description of idea 1 ....</p>
-      <div>
-        <p>text paragraph 1 of idea 1...</p>
-        <p>text paragraph 1 of idea 2...</p>
-        <p>text paragraph 1 of idea 3...</p>
-        <p>text paragraph 1 of idea 4...</p>
-      </div>
+      <h1>{idea.name}</h1>
+      <p>{idea.description}</p>
+      <div dangerouslySetInnerHTML={{ __html: idea.text }} />
     </div>
   )
 }
