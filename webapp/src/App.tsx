@@ -4,7 +4,7 @@ import { TrpcProvider } from './lib/trpc'
 import { AllIdeasPage } from './pages/AllideasPage'
 import { ViewIdeaPage } from './pages/ViewIdeaPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
+import './styles/global.scss'
 export const App = () => {
   return (
     <TrpcProvider>
