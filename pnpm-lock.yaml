@@ -114,9 +114,6 @@ importers:
       formik-validator-zod:
         specifier: ^1.0.2
         version: 1.0.2(formik@2.4.9(@types/react@18.3.28)(react@18.3.1))(zod@3.25.76)
-      include-media:
-        specifier: ^2.0.0
-        version: 2.0.0
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
@@ -2289,9 +2286,6 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
-
-  include-media@2.0.0:
-    resolution: {integrity: sha512-LSJcffPYIZ/Kln0rIi5UhqQbZxElDCMYA4dPC5MI1rkwwjptgEiOicHnzB0MMhMNJver0+4zULb4MKlgDyapZg==}
 
   indent-string@5.0.0:
     resolution: {integrity: sha512-m6FAo/spmsW2Ab2fU35JTYwtOKa2yAwXSwgjSv1TJzh4Mh7mC3lzAOVLBprb72XsTrgkEIsl7YrFNAiDiRhIGg==}
@@ -5796,8 +5790,6 @@ snapshots:
   import-meta-resolve@4.2.0: {}
 
   imurmurhash@0.1.4: {}
-
-  include-media@2.0.0: {}
 
   indent-string@5.0.0: {}
 
