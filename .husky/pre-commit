@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 pnpm types
 pnpm lint-staged
+pnpm w stylecheck
