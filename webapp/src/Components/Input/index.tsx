@@ -1,11 +1,12 @@
+import type { FormikProps } from 'formik'
+
 type InputProps<T extends Record<string, string>> = {
   name: Extract<keyof T, string>
   label: string
-  state: T
-  setState: React.Dispatch<React.SetStateAction<T>>
+  formik: FormikProps<T>
 }
-
-export const Input = <T extends Record<string, string>>({ name, label, state, setState }: InputProps<T>) => {
+export const Input = <T extends Record<string, string>>({ name, label, formik }: InputProps<T>) => {
+  const value = formik.values[name]
   return (
     <div style={{ marginBottom: 10 }}>
       <label htmlFor={name}>{label}</label>
@@ -13,9 +14,9 @@ export const Input = <T extends Record<string, string>>({ name, label, state, se
       <input
         type="text"
         onChange={(e) => {
-          setState((prev) => ({ ...prev, [name]: e.target.value }))
+          void formik.setFieldValue(name, e.target.value)
         }}
-        value={state[name]}
+        value={value}
         name={name}
         id={name}
       />

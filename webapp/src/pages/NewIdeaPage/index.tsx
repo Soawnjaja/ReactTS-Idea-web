@@ -1,27 +1,27 @@
-import { useState } from 'react'
+import { useFormik } from 'formik'
 import { Segment } from '../../Components/Segment'
 import { Input } from '../../Components/Input'
 import { TextArea } from '../../Components/Textarea'
+
 export const NewIdeaPage = () => {
-  const [state, setState] = useState({
-    name: '',
-    nick: '',
-    description: '',
-    text: '',
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      nick: '',
+      description: '',
+      text: '',
+    },
+    onSubmit: (values) => {
+      console.info('Submitted', values)
+    },
   })
 
   return (
     <Segment title="New Idea">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          console.info('Submitted', state)
-        }}
-      >
-        <Input name="name" label="Name" state={state} setState={setState} />
-        <Input name="nick" label="Nick" state={state} setState={setState} />
-        <Input name="description" label="Description" state={state} setState={setState} />
-        <TextArea name="text" label="Text" state={state} setState={setState} />
+      <form onSubmit={() => formik.handleSubmit()}>
+        <Input name="nick" label="Nick" formik={formik} />
+        <Input name="description" label="Description" formik={formik} />
+        <TextArea name="text" label="Text" formik={formik} />
 
         <button type="submit">Create Idea</button>
       </form>
