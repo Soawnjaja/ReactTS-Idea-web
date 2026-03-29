@@ -7,6 +7,7 @@ type InputProps<T extends Record<string, string>> = {
 }
 export const Input = <T extends Record<string, string>>({ name, label, formik }: InputProps<T>) => {
   const value = formik.values[name]
+  const error = formik.errors[name] as string | undefined
   return (
     <div style={{ marginBottom: 10 }}>
       <label htmlFor={name}>{label}</label>
@@ -20,6 +21,7 @@ export const Input = <T extends Record<string, string>>({ name, label, formik }:
         name={name}
         id={name}
       />
+      {error ? <div style={{ color: 'red' }}>{error}</div> : null}
     </div>
   )
 }
