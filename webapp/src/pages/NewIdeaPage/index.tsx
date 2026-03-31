@@ -42,7 +42,7 @@ export const NewIdeaPage = () => {
         <Input name="nick" label="Nick" formik={formik} />
         <Input name="description" label="Description" formik={formik} />
         <TextArea name="text" label="Text" formik={formik} />
-        {!formik.isValid ? <div style={{ color: 'red' }}>Some fields are invalid</div> : null}
+        {!formik.isValid && !!formik.submitCount ? <div style={{ color: 'red' }}>Some fields are invalid</div> : null}
         <button type="submit">Create Idea</button>
       </form>
     </Segment>
