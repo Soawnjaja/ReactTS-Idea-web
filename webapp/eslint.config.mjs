@@ -9,6 +9,19 @@ export default [
   {
     files: ['**/*.{ts,tsx}'],
     rules: {
+      'no-restricted-imports': 'off',
+      '@typescript-eslint/no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@ideanick/backend/**', '!@ideanick/backend/**/input', '!@ideanick/backend/**/input/**'],
+              allowTypeImports: true,
+              message: 'Only types and input schemas are allowed to be imported from backend workspace',
+            },
+          ],
+        },
+      ],
       'react-refresh/only-export-components': 'off',
     },
   },
