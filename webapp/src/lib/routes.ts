@@ -12,8 +12,8 @@ export function getRouteParams<T extends RouteFlags>(object: T): RouteParams<T> 
 }
 export const getAllIdeasRoute = () => '/'
 
-export const viewIdeaRouteParams = getRouteParams({ id: true })
+export const viewIdeaRouteParams = getRouteParams({ nick: true })
 export type viewIdeaRouteParamsType = typeof viewIdeaRouteParams
-export const getViewIdeaRoute = ({ id }: viewIdeaRouteParamsType) => `ideas/${id}`
+export const getViewIdeaRoute = ({ nick }: viewIdeaRouteParamsType) => `ideas/${nick}`
 
 export const getNewIdeaRoute = () => 'ideas/new'

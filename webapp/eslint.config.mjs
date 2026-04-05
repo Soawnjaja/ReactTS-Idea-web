@@ -15,7 +15,7 @@ export default [
         {
           patterns: [
             {
-              group: ['@ideanick/backend/**', '!@ideanick/backend/**/input', '!@ideanick/backend/**/input/**'],
+              regex: '^@fullstackts/backend/(?!(?:.*\\/)?input(?:\\/|$)).+$',
               allowTypeImports: true,
               message: 'Only types and input schemas are allowed to be imported from backend workspace',
             },

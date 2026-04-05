@@ -19,11 +19,11 @@ export const AllIdeasPage = () => {
     <Segment title="All ideas">
       <div className={css.ideas}>
         {ideas.map((idea) => (
-          <div className={css.idea} key={idea.id}>
+          <div className={css.idea} key={idea.nick}>
             <Segment
               size={2}
               title={
-                <Link className={css.ideaLink} to={getViewIdeaRoute({ id: idea.id })}>
+                <Link className={css.ideaLink} to={getViewIdeaRoute({ nick: idea.nick })}>
                   {idea.name}
                 </Link>
               }

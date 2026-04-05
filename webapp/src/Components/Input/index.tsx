@@ -24,6 +24,7 @@ export const Input = <T extends Record<string, string>>({ name, label, formik }:
         value={value}
         name={name}
         id={name}
+        disabled={formik.isSubmitting}
       />
       {!!touched && !!error ? <div style={{ color: 'red' }}>{error}</div> : null}
     </div>

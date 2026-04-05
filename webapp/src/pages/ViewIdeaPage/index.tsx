@@ -4,9 +4,9 @@ import css from './index.module.scss'
 import { Segment } from '../../Components/Segment'
 
 export const ViewIdeaPage = () => {
-  const { id } = useParams() as { id: string }
+  const { nick } = useParams() as { nick: string }
   const ideaQuery = trpc.getIdea.useQuery({
-    id,
+    nick,
   })
   if (ideaQuery.isLoading || ideaQuery.isFetching) {
     return <span>Loading...</span>

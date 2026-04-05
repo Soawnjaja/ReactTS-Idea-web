@@ -5,13 +5,13 @@ import { ideas } from '../../lib/ideas'
 export const getIdeaTrpcRoute = trpc.procedure
   .input(
     z.object({
-      id: z.string(),
+      nick: z.string(),
     })
   )
   .query(({ input }) => {
-    const idea = ideas.find((idea) => idea.id === input.id)
+    const idea = ideas.find((idea) => idea.nick === input.nick)
     if (!idea) {
-      throw new Error(`Idea ${input.id} not found`)
+      throw new Error(`Idea ${input.nick} not found`)
     }
     return { idea: idea || null }
   })
