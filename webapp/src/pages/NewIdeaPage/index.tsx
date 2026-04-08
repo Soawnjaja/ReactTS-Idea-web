@@ -1,4 +1,5 @@
 import { useFormik } from 'formik'
+import { Alert } from '../../Components/Alert'
 import { Segment } from '../../Components/Segment'
 import { Input } from '../../Components/Input'
 import { TextArea } from '../../Components/Textarea'
@@ -42,10 +43,10 @@ export const NewIdeaPage = () => {
         <Input name="name" label="Name" formik={formik} />
         <Input name="nick" label="Nick" formik={formik} />
         <Input name="description" label="Description" formik={formik} />
-        <TextArea name="text" label="Text" formik={formik} />
+        <TextArea name="text" label="Text" formik={formik} maxWidth={500} />
         {!formik.isValid && !!formik.submitCount ? <div style={{ color: 'red' }}>Some fields are invalid</div> : null}
-        {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}
-        {successMessageVisible && <div style={{ color: 'green' }}>Idea Created</div>}
+        {!!submittingError && <Alert color="red">{submittingError}</Alert>}
+        {successMessageVisible && <Alert color="green">Idea created!</Alert>}
         <button type="submit" disabled={formik.isSubmitting}>
           {formik.isSubmitting ? 'Submiting...' : 'Create Idea'}
         </button>
