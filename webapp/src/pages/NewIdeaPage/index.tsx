@@ -7,6 +7,7 @@ import { withZodSchema } from 'formik-validator-zod'
 import { trpc } from '../../lib/trpc'
 import { zCreateIdeaTrpcInput } from '@fullstackts/backend/src/router/createIdea/input'
 import { useState } from 'react'
+import { Button } from '../../Components/Button'
 
 export const NewIdeaPage = () => {
   const [successMessageVisible, setSuccessMessageVisible] = useState(false)
@@ -47,9 +48,7 @@ export const NewIdeaPage = () => {
         {!formik.isValid && !!formik.submitCount ? <div style={{ color: 'red' }}>Some fields are invalid</div> : null}
         {!!submittingError && <Alert color="red">{submittingError}</Alert>}
         {successMessageVisible && <Alert color="green">Idea created!</Alert>}
-        <button type="submit" disabled={formik.isSubmitting}>
-          {formik.isSubmitting ? 'Submiting...' : 'Create Idea'}
-        </button>
+        <Button loading={formik.isSubmitting}>Create Idea</Button>
       </form>
     </Segment>
   )
