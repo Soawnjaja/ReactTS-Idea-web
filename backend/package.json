@@ -7,18 +7,27 @@
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node dist/index.js",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslintcache --ext .ts,.tsx .",
+    "pmd": "prisma migrate dev",
+    "pgc": "prisma generate",
     "types": "tsc --noEmit --project ./tsconfig.json",
-    "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
+    "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'",
+    "prepare": "prisma generate"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/lodash": "^4.17.23",
-    "@types/node": "^25.2.3"
+    "@types/node": "^25.2.3",
+    "prisma": "^7.7.0"
   },
   "dependencies": {
+    "@prisma/client": "^7.7.0",
     "@trpc/server": "^11.10.0",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
     "express": "^5.2.1",
     "lodash": "^4.17.23",
     "zod": "^3.25.76"
