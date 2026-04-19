@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { trpc } from '../../lib/trpc'
+import format from 'date-fns/format'
 import css from './index.module.scss'
 import { Segment } from '../../Components/Segment'
 
@@ -23,6 +24,7 @@ export const ViewIdeaPage = () => {
   }
   return (
     <Segment title={idea.name} description={idea.description}>
+      <div className={css.createdAt}>Created at: {format(idea.createdAt, 'yyyy-MM-dd')}</div>
       <div className={css.text} dangerouslySetInnerHTML={{ __html: idea.text }} />
     </Segment>
   )
