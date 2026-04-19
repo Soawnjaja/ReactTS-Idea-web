@@ -1,12 +1,13 @@
-import { ideas } from '../../lib/ideas'
 import { trpc } from '../../lib/trpc'
 
-export const getIdeasTrpcRoute = trpc.procedure.query(() => {
-  return {
-    ideas: ideas.map((idea) => ({
-      nick: idea.nick,
-      name: idea.name,
-      description: idea.description,
-    })),
-  }
+export const getIdeasTrpcRoute = trpc.procedure.query(async ({ ctx }) => {
+  const ideas = await ctx.prisma.idea.findMany({
+    select: {
+      id: true,
+      nick: true,
+      name: true,
+      description: true,
+    },
+  })
+  return { ideas }
 })

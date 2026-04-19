@@ -18,7 +18,9 @@ export const ViewIdeaPage = () => {
     return <div>Not found</div>
   }
   const { idea } = ideaQuery.data
-
+  if (!idea) {
+    return <div>Not found</div>
+  }
   return (
     <Segment title={idea.name} description={idea.description}>
       <div className={css.text} dangerouslySetInnerHTML={{ __html: idea.text }} />

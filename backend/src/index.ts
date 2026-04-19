@@ -1,12 +1,23 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import { trpcRouter } from './router'
 import { applyTrpcToExpressApp } from './lib/trpc'
-const expressApp = express()
-expressApp.use(cors())
+import { type AppContext, createAppContext } from './lib/ctx'
 
-applyTrpcToExpressApp(expressApp, trpcRouter)
+void (async () => {
+  let ctx: AppContext | null = null
+  try {
+    ctx = createAppContext()
+    const expressApp = express()
+    expressApp.use(cors())
 
-expressApp.listen(3000, () => {
-  console.info('Listening at http://localhost:3000')
-})
+    applyTrpcToExpressApp(expressApp, ctx, trpcRouter)
+    expressApp.listen(3000, () => {
+      console.info('Listening at http://localhost:3000')
+    })
+  } catch (error) {
+    console.error(error)
+    await ctx?.stop()
+  }
+})()
