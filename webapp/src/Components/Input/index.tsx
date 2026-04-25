@@ -2,27 +2,23 @@ import cn from 'classnames'
 import type { FormikProps } from 'formik'
 import css from './index.module.scss'
 
-type NewIdeaFormValues = {
-  name: string
-  nick: string
-  description: string
-  text: string
-}
-type InputProps = {
-  name: keyof NewIdeaFormValues
+type InputProps<T extends Record<string, string>> = {
+  name: Extract<keyof T, string>
   label: string
-  formik: FormikProps<NewIdeaFormValues>
+  formik: FormikProps<T>
+  type?: 'text' | 'password'
 }
-export const Input = ({ name, label, formik }: InputProps) => {
+export const Input = <T extends Record<string, string>>({ name, label, formik, type = 'text' }: InputProps<T>) => {
   const value = formik.values[name]
   const error = formik.errors[name] as string | undefined
   const touched = formik.touched[name]
   const invalid = !!touched && !!error
   const disabled = formik.isSubmitting
+  const inputName = String(name)
 
   return (
     <div className={cn({ [css.field]: true, [css.disabled]: disabled })}>
-      <label className={css.label} htmlFor={name}>
+      <label className={css.label} htmlFor={inputName}>
         {label}
       </label>
       <br />
@@ -31,7 +27,7 @@ export const Input = ({ name, label, formik }: InputProps) => {
           [css.input]: true,
           [css.invalid]: invalid,
         })}
-        type="text"
+        type={type}
         onChange={(e) => {
           void formik.setFieldValue(name, e.target.value)
         }}
@@ -39,8 +35,8 @@ export const Input = ({ name, label, formik }: InputProps) => {
           void formik.setFieldTouched(name)
         }}
         value={value}
-        name={name}
-        id={name}
+        name={inputName}
+        id={inputName}
         disabled={formik.isSubmitting}
       />
       {invalid ? <div style={{ color: 'red' }}>{error}</div> : null}

@@ -17,6 +17,16 @@ export const Layout = () => {
               Add Idea
             </Link>
           </li>
+          <li className={css.item}>
+            <Link className={css.link} to={routes.getSignUpRoute()}>
+              Sign up
+            </Link>
+          </li>
+          <li className={css.item}>
+            <Link className={css.link} to={routes.getSignInRoute()}>
+              Sign In
+            </Link>
+          </li>
         </ul>
       </div>
       <hr />
