@@ -6,6 +6,7 @@ import { AllIdeasPage } from './pages/AllideasPage'
 import { ViewIdeaPage } from './pages/ViewIdeaPage'
 import { SignUpPage } from './pages/SigUpPage'
 import { SignInPage } from './pages/SignInPage'
+import { SignOutPage } from './pages/SignOutPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './styles/global.scss'
 
@@ -14,6 +15,7 @@ export const App = () => {
     <TrpcProvider>
       <BrowserRouter>
         <Routes>
+          <Route path={routes.getSignOutRoute()} element={<SignOutPage />}></Route>
           <Route element={<Layout />}>
             <Route path={routes.getAllIdeasRoute()} element={<AllIdeasPage />} />
             <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />}></Route>

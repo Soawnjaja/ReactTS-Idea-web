@@ -2,6 +2,7 @@ import { zSignUpTrpcInput } from '@fullstackts/backend/src/router/signUp/input'
 import { useFormik } from 'formik'
 import { withZodSchema } from 'formik-validator-zod'
 import { useState } from 'react'
+import Cookies from 'js-cookie'
 import { z } from 'zod'
 import { Alert } from '../../Components/Alert'
 import { Button } from '../../Components/Button'
@@ -9,9 +10,11 @@ import { FormItems } from '../../Components/FormItems'
 import { Input } from '../../Components/Input'
 import { Segment } from '../../Components/Segment'
 import { trpc } from '../../lib/trpc'
-
+import { useNavigate } from 'react-router-dom'
+import * as routes from '../../lib/routes'
 export const SignUpPage = () => {
-  const [successMessageVisible, setSuccessMessageVisible] = useState(false)
+  const navigate = useNavigate()
+  const trpcUtils = trpc.useContext()
   const [submittingError, setSubmittingError] = useState<string | null>(null)
   const signUp = trpc.signUp.useMutation()
   const formik = useFormik({
@@ -38,12 +41,10 @@ export const SignUpPage = () => {
     onSubmit: async (values) => {
       try {
         setSubmittingError(null)
-        await signUp.mutateAsync(values)
-        formik.resetForm()
-        setSuccessMessageVisible(true)
-        setTimeout(() => {
-          setSuccessMessageVisible(false)
-        }, 3000)
+        const { token } = await signUp.mutateAsync(values)
+        Cookies.set('token', token, { expires: 9999 })
+        void trpcUtils.invalidate()
+        navigate(routes.getAllIdeasRoute())
       } catch (err: unknown) {
         if (err instanceof Error) {
           setSubmittingError(err.message)
@@ -63,7 +64,6 @@ export const SignUpPage = () => {
           <Input label="Password again" name="passwordAgain" type="password" formik={formik} />
           {!formik.isValid && !!formik.submitCount && <Alert color="red">Some fields are invalid</Alert>}
           {submittingError && <Alert color="red">{submittingError}</Alert>}
-          {successMessageVisible && <Alert color="green">Thanks for sign up!</Alert>}
           <Button loading={formik.isSubmitting}>Sign Up</Button>
         </FormItems>
       </form>
