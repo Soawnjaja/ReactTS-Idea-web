@@ -1,0 +1,12 @@
+ignorePatterns:
+  - node_modules
+  - dist
+plugins:
+  - node
+rules:
+  import/order:
+    - error
+      - info
+      - error
+      - warn
+  node/no-process-env: error
