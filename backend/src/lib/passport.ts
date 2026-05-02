@@ -37,6 +37,9 @@ export const applyPassportToExpressApp = (expressApp: Express, ctx: AppContext):
       next()
       return
     }
-    passport.authenticate('jwt', { session: false })(req, res, next)
+    passport.authenticate('jwt', { session: false }, (err: Error | null, user: Express.User | false) => {
+      req.user = user || undefined
+      next()
+    })(req, res, next)
   })
 }
