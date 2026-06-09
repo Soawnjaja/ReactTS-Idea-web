@@ -14,9 +14,13 @@ export const getAllIdeasRoute = () => '/'
 
 export const viewIdeaRouteParams = getRouteParams({ nick: true })
 export type viewIdeaRouteParamsType = typeof viewIdeaRouteParams
-export const getViewIdeaRoute = ({ nick }: viewIdeaRouteParamsType) => `ideas/${nick}`
+export const getViewIdeaRoute = ({ nick }: viewIdeaRouteParamsType) => `/ideas/${nick}`
 
-export const getNewIdeaRoute = () => 'ideas/new'
+export const editIdeaRouteParams = viewIdeaRouteParams
+export type EditIdeaRouteParams = viewIdeaRouteParamsType
+export const getEditIdeaRoute = ({ nick }: EditIdeaRouteParams) => `/ideas/${nick}/edit`
+
+export const getNewIdeaRoute = () => '/ideas/new'
 
 export const getSignUpRoute = () => '/sign-up'
 
