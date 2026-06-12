@@ -6,7 +6,7 @@ import { Button } from '../../Components/Button'
 import { FormItems } from '../../Components/FormItems'
 import { Input } from '../../Components/Input'
 import { Segment } from '../../Components/Segment'
-
+import { useMe } from '../../lib/ctx'
 import { TextArea } from '../../Components/Textarea'
 import { trpc } from '../../lib/trpc'
 import { useForm } from '../../lib/form'
@@ -51,18 +51,14 @@ export const EditIdeaPage = () => {
   const getIdeaResult = trpc.getIdea.useQuery({
     nick,
   })
-  const getMeResult = trpc.getMe.useQuery()
+  const me = useMe()
 
-  if (getIdeaResult.isLoading || getIdeaResult.isFetching || getMeResult.isLoading || getMeResult.isFetching) {
+  if (getIdeaResult.isLoading || getIdeaResult.isFetching) {
     return <span>Loading...</span>
   }
 
   if (getIdeaResult.isError) {
     return <span>Error: {getIdeaResult.error.message}</span>
-  }
-
-  if (getMeResult.isError) {
-    return <span>Error: {getMeResult.error.message}</span>
   }
 
   if (!getIdeaResult.data) {
@@ -74,7 +70,6 @@ export const EditIdeaPage = () => {
   }
 
   const idea = getIdeaResult.data.idea
-  const me = getMeResult.data?.me
 
   if (!me) {
     return <span>Only for authorized</span>
